@@ -27,6 +27,7 @@ For AI model builders, the datasets are preorganized in a way for them to easily
 - All dataset should have their downloadable links exposed, in addition to their repo link
 	- This is a hard requirement, as the final dataset scale could possibly span PETABYTES
 	- Note that the download link / script is handled differently from the git repo. As such it is possible for a single git repo to be split across multiple categories
+	- As a general rule of thumb, its ok to have links in this repo, but downloaded copies of those links need to be moved to a seperate repo.
 - All dataset must have permissive / opensource public licensing, which needs to be indicated. This rule is applied in the strictest sense for cleaned and parsed data.
 - All dataset (raw-clean) when possible, should be in its full original length. We should avoid splitting into fix context length to take full advantage of RWKV "infinite context length"
 - Parsed dataset, should be in chunks of approximate 100M (soft rule), this model builders to easily cherrypick which should be their training / test data pairs
@@ -96,3 +97,22 @@ For more complicated downloading / filter rules, you would want to apply the fil
 ./download-dataset.sh --type=jsonl --license=public PD1
 ./download-dataset.sh --type=jsonl --license=public PD2
 ```
+
+---
+
+# open question for discussions
+
+1) Should subrepos be presented as
+	- links, with a setup script, and a gitignore preconfigured
+	- submodule
+
+2) What should be our preferred dataformat
+	- Personally i prefer JSONL, but I AM BIAS, so yea ....
+
+3) Classification? What should we change
+
+4) Instruction training dataset, classification needs major consideration (call for help)
+
+5) We should probably reserve the dataset tagging / download script questions to after we have the first 50 dataset organized ???
+
+6) How does this fit in with the world model project?
