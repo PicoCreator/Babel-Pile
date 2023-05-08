@@ -12,6 +12,7 @@ Currently the following is the proposed sub categories for instruction training
 | MT | Math tasks                      |                                                                                     |
 | IS | General purpose instruction set |                                                                                     |
 | RP | Role playing system prompt      |                                                                                     |
+| FT | Failed Task training            | Known failing task that did not fit into other category                             |
 | TL | Tool usage training             | (Agent model)                                                                       |
 | SM | Summarization task              |                                                                                     |
 | QA | In context Q&A                  | Should include, strictness training (do not answer unless its in the provided text) |
