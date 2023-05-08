@@ -16,7 +16,7 @@ It also represents what is the most "scalable" way to acquire "copyright free / 
 **Major examples**
 
 - [The swiss constitution](https://www.fedlex.admin.ch/eli/cc/1999/404/en), is cross translated between German, French, Italian, Romansh and English
-- [The Bible](https://huggingface.co/datasets/bible-nlp/biblenlp-corpus), is translated to over 600 languages (this dataset is not even the complete list)
+- [The Bible](https://en.wikipedia.org/wiki/Bible_translations), is translated to over 1000 languages (the issue is getting the copyright free copies)
 
 > While as a general rule of thumb, laws are considered public domain. The translation may not be considered public domain. Contact your respective national agency to confirm legal permission for the translation.
 
