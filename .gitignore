@@ -9,5 +9,9 @@
 node_modules/
 **/node_modules/
 
+# Sub project git folders
+**/.git/
+**/*.git/
+
 # Allow back git ignore
-!.gitignore
+!.git*

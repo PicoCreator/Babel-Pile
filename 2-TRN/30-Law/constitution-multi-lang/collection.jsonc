@@ -1,0 +1,7 @@
+{
+    // Git repo of the project
+    "git": "https://huggingface.co/datasets/picocreator/constitution-multi-lang",
+
+    // Licensing terms of the dataset
+    "license": "Apache-2.0"
+}
