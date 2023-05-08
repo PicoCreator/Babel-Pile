@@ -1,0 +1,9 @@
+# Common hidden files
+.*
+
+# Avoid accidental commit of dataset
+*.bin
+*.jsonl
+
+# Allow back git ignore
+!.gitignore

@@ -15,7 +15,7 @@ This project is intentionally designed to **not** hold any of the dataset itself
 
 All data here will be organized into the various phases, of the community effort to crawl, parse, cleanup, and deduplicate the data.
 
-The structure of the Babel Pile, is intentionally designed, to facilitate community based contributions, which in many cases, may not involved coding. Or even machine learning itself.
+The structure of the Babel Pile, is intentionally designed, to facilitate community based contributions, which in many cases, may not involved coding. Or even machine learning itself. It also allow community contributions in a way that would allow more specialized individuals from their respective domain background or nationality, to maintain a subset of the "Babel Pile".
 
 For AI model builders, the datasets are preorganized in a way for them to easily pick and choose the desired dataset for their use case, in various stages of the AI training process.
 
@@ -25,6 +25,7 @@ For AI model builders, the datasets are preorganized in a way for them to easily
 	- github
 	- huggingface
 - All dataset should have their downloadable links exposed, in addition to their repo link
+	- This is a hard requirement, as the final dataset scale could possibly span PETABYTES
 - All dataset must have permissive / opensource public licensing, which needs to be indicated
 - All dataset (raw-clean) when possible, should be in its full original length. We should avoid splitting into fix context length to take full advantage of RWKV "infinite context length"
 - Parsed dataset, should be in chunks of approximate 100M (soft rule), this model builders to easily cherrypick which should be their training / test data pairs
@@ -35,49 +36,29 @@ For AI model builders, the datasets are preorganized in a way for them to easily
 
 All dataset is either classified into the following top level categories
 
-- FND : foundation training data
-- TRN : translation pairs training data
-- INS : instruction training data
+- 1-FDN : foundation training data
+- 2-TRN : translation pairs training data
+- 3-INS : instruction training data
 
-Each of the top level category, have sub category classification rules.
+The top level classification, will have more details for their sub category
 
-**Organizing the foundation dataset**
+# Dataset stages
 
-With the following sub categories, modified from the [Nippon Decimal Classification](https://en.wikipedia.org/wiki/Nippon_Decimal_Classification), which is modified from the american [Dewey Decimal Classification](https://en.wikipedia.org/wiki/List_of_Dewey_Decimal_classes)
+Dataset, within their respective categories, will be further classified with the following stages representing their data quality.
 
-| Category Name       | Notes                                                                                 | Nippon Decimal | Dewey Decimal        |
-|---------------------|---------------------------------------------------------------------------------------|----------------|----------------------|
-| Math                | Special category for math training data                                               |                |                      |
-| Code                | Special category for code training data                                               |                |                      |
-| General Knowledge   | General purpose category                                                              | 000 - 099      | 000 - 090            |
-| Philosophy          |                                                                                       | 100 - 199      | 100 - 109, 120 - 299 |
-| History & Geology   |                                                                                       | 200 - 299      | 900 - 999            |
-| Social Sciences     |                                                                                       | 300 - 399      | 300 - 379, 383 - 399 |
-| Natural Sciences    |                                                                                       | 400 - 499      | 110 - 119, 500 - 599 |
-| Tech & Engineering  |                                                                                       | 500 - 599      | 600 - 699            |
-| Industry & Commerce |                                                                                       | 600 - 699      | 380 - 382            |
-| Arts                |                                                                                       | 700 - 799      | 700 - 799            |
-| Language            |                                                                                       | 800 - 899      | 400 - 499            |
-| Literature          |                                                                                       | 900 - 999      | 800 - 899            |
-| Hybrid              | Special collections, reserved for major mixed datasets (ie. wikipedia, commons crawl) |                |                      |
-| Others              | Reserved for use cases that does not fit in all the above somehow                     |                |                      |
-| WIP                 | Temporary category, used to organize data efforts before its "sorted" properly        |                |                      |
+- IDA : Raw data links, or raw ideas, typically an external datasource that is either needs to be crawled, and organized into huggingface first, or incomplete ideas or theory. The barrier of entry here should be as low as possible.
+- RAW : Crawled data, from the raw datasources, formatted into a common/resonable format. These are raw links and ideas promoted here by community effort
+- CLN : Crawled data, which is then cleanedup, annotated, and deduplicated (within itself) or split into smaller more focused datasets.
 
-Each of the above Category should have its respective "book" dataset. So that you can add any public domain books into the respective collection.
+With the following final stages for parsed data
 
-**Notes on the design of category names**
+- PD1 : Human-level, parsed dataset, of the strictest level, nothing in here conflicts with other P01 datasets, nor have duplicate data with each other. By default all existing large dataset do not qualify for this category, unless proven otherwise.
+- PD2 : Human-level, parsed dataset, which do not conflict with P01, but may have documented conflicts with other P02 dataset. A priority level between conflicting P02 should be established to quickly and easily resolve such conflicts programatically.
+- PD3 : Parsed dataset, which may have minor conflicts with other P01 / P02 data, but due to their size or usefulness is commonly included anyway (eg. wikipedia). P03 is still required to be dedupped, to avoid conflict with one another as a guideline. AI generated content, or automatic OCR, or automatic trasnlation data, that is unfiltered manually in a strict fashion, falls into this category, and cannot be promoted to PD1/2 without extensive human vetting and filtering.
+- PD4 : Parsed dataset, with some onging level of cleanup efforts and maybe candidate for PD3 or higher, this typically represents ongoing dedup efforts, etc.
+- PD5 : Parsed dataset, with minimal ongoing efforts in cleanup or dedup. This is typically an experimental dumping ground for specific use cases.
 
-The "Nippon Decimal Classification" was intentionally choosen over the "Dewey Decimal Classification",
-as its the easiest to translate from the "Dewey Decimal" system, while having significantly less "American Bias"
-
-The point here is to not reinvent the whole wheel, and make use of the existing classification system libraries have been using for years
-to organize the collection of knowledge, in a systematic manner (with the Dewey Decimal, being one of the most commonly used system)
-
-This also allow debates on where such content should be assigned to, be resolved by simply looking up existing libraries classification. 
-
-Additionally if we are uncertain for any piece of arbitary data, we can lookup its closest material in a library and use that as mapping instead.
-
-> Open question : Should we use another system instead? If so which.
+Conceptually, for an AI trainer, the fastest way to get started is to include all of PD1-3 data, filtered accroding to your use case. While handpicking PD4-5 dataset of specific interest for your uses.
 
 # Dataset tagging
 
@@ -95,12 +76,21 @@ It should be in the following format
 }
 ```
 
-> This part is still a WIP
+# Download / Setup scripts
 
-# The stages of organizing the dataset
+> @TODO, this is purely conceptual as of now, the scripts do not exists, and the commands WILL change
 
-- raw : Raw data links, or raw ideas, typically an external datasource that is either needs to be crawled, and organized into huggingface first, or incomplete ideas or theory. The barrier of entry here should be as low as possible.
-- crawl : Crawled data, from the raw datasources, formatted into a common/resonable format. These are raw links promoted here by community effort
-- clean : Crawled data, which is then cleanedup, annotated, and deduplicated (within itself) or split into smaller more focused datasets.
+To pre download all the relevent foundation data you will need in training, go to the respective directory and run the dataset level you want to load
 
-- parsed : Parsed datasets are designed for usage with
+```
+cd 1-FDN
+./download-dataset.sh PD1
+./download-dataset.sh PD2
+```
+
+For more complicated downloading / filter rules, you would want to apply the filters accordingly
+
+```
+./download-dataset.sh --type=jsonl --license=public PD1
+./download-dataset.sh --type=jsonl --license=public PD2
+```
