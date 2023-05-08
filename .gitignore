@@ -5,5 +5,9 @@
 *.bin
 *.jsonl
 
+# Node modules (used for throwaway code?)
+node_modules/
+**/node_modules/
+
 # Allow back git ignore
 !.gitignore
