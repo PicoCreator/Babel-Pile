@@ -26,9 +26,11 @@ For AI model builders, the datasets are preorganized in a way for them to easily
 	- huggingface
 - All dataset should have their downloadable links exposed, in addition to their repo link
 	- This is a hard requirement, as the final dataset scale could possibly span PETABYTES
-- All dataset must have permissive / opensource public licensing, which needs to be indicated
+	- Note that the download link / script is handled differently from the git repo. As such it is possible for a single git repo to be split across multiple categories
+- All dataset must have permissive / opensource public licensing, which needs to be indicated. This rule is applied in the strictest sense for cleaned and parsed data.
 - All dataset (raw-clean) when possible, should be in its full original length. We should avoid splitting into fix context length to take full advantage of RWKV "infinite context length"
 - Parsed dataset, should be in chunks of approximate 100M (soft rule), this model builders to easily cherrypick which should be their training / test data pairs
+- Unparsed dataset, should not assume or lock in how the boundary tokens are trained. This allow the data to be easier adapted for target use cases.
 
 > Feedback on this would be appreciated
 
